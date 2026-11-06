@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff9f7">
+  <title>COA Lab Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" data-page-link="dashboard" aria-label="COA Lab Simulator dashboard">
+        <span class="brand-icon">✿</span><span>COA <b>Lab Simulator</b></span>
+      </a>
+      <p class="side-label">YOUR WORKSPACE</p>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span>Dashboard</button>
+        <button class="nav-item" data-page="gates"><span class="nav-icon">◇</span>Logic Gates</button>
+        <button class="nav-item" data-page="truth"><span class="nav-icon">▦</span>Truth Tables</button>
+        <button class="nav-item" data-page="converter"><span class="nav-icon">↔</span>Binary Converter</button>
+        <button class="nav-item" data-page="complement"><span class="nav-icon">⊖</span>Complement Calculator</button>
+        <button class="nav-item" data-page="adder"><span class="nav-icon">⊕</span>Adder Simulator</button>
+        <button class="nav-item" data-page="programs"><span class="nav-icon">⌘</span>8086 Programs</button>
+        <button class="nav-item" data-page="about"><span class="nav-icon">♡</span>About</button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="note-flower">✿</span>
+        <p><strong>A little logic goes a long way.</strong><br>Practice at your own pace.</p>
+      </div>
+      <div class="side-footer">MADE FOR CURIOUS MINDS <span>♡</span></div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumb"><span>COA LAB</span><span class="crumb-slash">/</span><strong id="current-page-name">Dashboard</strong></div>
+        <div class="topbar-note"><span class="online-dot"></span> Your interactive study space</div>
+      </header>
+
+      <main class="main-content">
+        <section class="page active" id="page-dashboard" data-page-section="dashboard">
+          <div class="welcome-card">
+            <div class="welcome-copy">
+              <span class="eyebrow">YOUR COA STUDY CORNER <span>✿</span></span>
+              <h1>Welcome to COA Lab Simulator</h1>
+              <p>Learn Computer Organization and Architecture interactively.</p>
+              <button class="button button-pink" data-go="gates">Let’s explore <span>→</span></button>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+              <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+              <div class="art-chip"><span>0</span><span class="chip-xor">⊕</span><span>1</span></div>
+              <span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✿</span><span class="art-spark spark-three">·</span>
+            </div>
+          </div>
+
+          <div class="section-title-row">
+            <div><span class="eyebrow">PICK UP WHERE YOU LIKE</span><h2>Explore the lab</h2></div>
+            <span class="soft-caption">Choose a module to get started</span>
+          </div>
+          <div class="module-grid">
+            <button class="module-card tint-pink" data-go="gates"><span class="module-icon">◇</span><span class="module-title">Logic Gates</span><span class="module-copy">Try inputs and watch the output change.</span><span class="module-arrow">Explore →</span></button>
+            <button class="module-card tint-lavender" data-go="truth"><span class="module-icon">▦</span><span class="module-title">Truth Tables</span><span class="module-copy">See every possible input combination.</span><span class="module-arrow">Explore →</span></button>
+            <button class="module-card tint-mint" data-go="converter"><span class="module-icon">↔</span><span class="module-title">Binary Converter</span><span class="module-copy">Translate numbers across number systems.</span><span class="module-arrow">Explore →</span></button>
+            <button class="module-card tint-peach" data-go="adder"><span class="module-icon">⊕</span><span class="module-title">Adder Simulator</span><span class="module-copy">Build sums one bit at a time.</span><span class="module-arrow">Explore →</span></button>
+          </div>
+
+          <div class="quick-start panel">
+            <div><span class="eyebrow">A GOOD PLACE TO BEGIN</span><h2>Quick start</h2><p>Jump into a hands-on simulation and learn by doing.</p></div>
+            <div class="quick-actions"><button class="button button-outline" data-go="gates"><span>◇</span> Play with logic gates</button><button class="button button-pink" data-go="adder"><span>⊕</span> Build an adder</button></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-gates" data-page-section="gates" hidden>
+          <div class="page-heading"><span class="eyebrow">PLAY WITH BOOLEAN LOGIC</span><h1>Logic Gates</h1><p>Choose a gate, flip its inputs, and see the logic come to life.</p></div>
+          <div class="two-column gate-layout">
+            <div class="panel control-panel">
+              <label class="field-label" for="gate-select">Choose a gate</label>
+              <select id="gate-select" class="select-control">
+                <option>AND</option><option>OR</option><option>NOT</option><option>NAND</option><option>NOR</option><option selected>XOR</option><option>XNOR</option>
+              </select>
+              <div class="input-switches" id="gate-inputs">
+                <div class="switch-row"><div><strong>Input A</strong><small>Toggle the first input</small></div><button class="toggle-switch" id="gate-a" role="switch" aria-checked="1" aria-label="Toggle input A"><span></span></button><span class="toggle-value" id="gate-a-value">1</span></div>
+                <div class="switch-row" id="gate-b-row"><div><strong>Input B</strong><small>Toggle the second input</small></div><button class="toggle-switch" id="gate-b" role="switch" aria-checked="0" aria-label="Toggle input B"><span></span></button><span class="toggle-value" id="gate-b-value">0</span></div>
+              </div>
+              <div class="expression-box"><span class="field-label">Boolean expression</span><strong id="gate-expression">Output = A XOR B</strong></div>
+            </div>
+            <div class="panel gate-visual-panel">
+              <div class="panel-heading"><div><span class="eyebrow">LIVE CIRCUIT</span><h2 id="gate-diagram-title">XOR gate</h2></div><span class="live-pill"><i></i> LIVE</span></div>
+              <div class="gate-diagram-wrap" id="gate-diagram"></div>
+              <div class="output-reading"><div><span class="field-label">OUTPUT</span><strong id="gate-output-label">1</strong></div><div class="output-lamp is-on" id="gate-lamp" aria-label="Output is 1"></div></div>
+            </div>
+          </div>
+          <div class="panel truth-preview">
+            <div class="panel-heading"><div><span class="eyebrow">INPUTS AT A GLANCE</span><h2>Truth table</h2></div><button class="text-button" data-go="truth">Open full table →</button></div>
+            <div id="gate-truth-table" class="table-wrap"></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-truth" data-page-section="truth" hidden>
+          <div class="page-heading"><span class="eyebrow">EVERY INPUT, EVERY OUTPUT</span><h1>Truth Tables</h1><p>Explore the complete behavior of each basic logic gate.</p></div>
+          <div class="panel table-page-panel">
+            <div class="toolbar"><div><label class="field-label" for="truth-gate-select">Selected gate</label><select id="truth-gate-select" class="select-control compact-select"><option>AND</option><option>OR</option><option>NOT</option><option>NAND</option><option>NOR</option><option selected>XOR</option><option>XNOR</option></select></div><p class="table-hint" id="truth-table-hint">The highlighted row matches your current Logic Gates inputs.</p></div>
+            <div id="truth-table" class="table-wrap"></div>
+          </div>
+          <div class="tip-card"><span>✦</span><p><strong>Reading the table:</strong> each row is one possible input combination. The output column shows what the selected gate produces.</p></div>
+        </section>
+
+        <section class="page" id="page-converter" data-page-section="converter" hidden>
+          <div class="page-heading"><span class="eyebrow">NUMBERS, TRANSLATED</span><h1>Binary Converter</h1><p>Convert binary to other number systems, or decimal back to binary.</p></div>
+          <div class="two-column converter-grid">
+            <div class="panel converter-card">
+              <div class="panel-heading"><div><span class="eyebrow">BINARY → OTHER BASES</span><h2>Convert from binary</h2></div><span class="round-icon tint-pink">01</span></div>
+              <label class="field-label" for="binary-input">Binary number</label>
+              <div class="input-with-action"><input id="binary-input" class="text-control mono" value="1011" inputmode="numeric" autocomplete="off" aria-describedby="binary-error"><button class="button button-pink" id="convert-binary">Convert</button></div>
+              <p class="field-error" id="binary-error" role="alert"></p>
+              <div class="conversion-results">
+                <div class="conversion-result"><span>DECIMAL</span><strong id="result-decimal">11</strong></div>
+                <div class="conversion-result"><span>OCTAL</span><strong id="result-octal">13</strong></div>
+                <div class="conversion-result"><span>HEXADECIMAL</span><strong id="result-hex">B</strong></div>
+                <div class="conversion-result"><span>GRAY CODE</span><strong id="result-gray">1110</strong></div>
+              </div>
+              <div class="calculation-note" id="binary-steps">1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 11₁₀</div>
+            </div>
+            <div class="panel converter-card decimal-card">
+              <div class="panel-heading"><div><span class="eyebrow">DECIMAL → BINARY</span><h2>Convert back</h2></div><span class="round-icon tint-lavender">10</span></div>
+              <label class="field-label" for="decimal-input">Non-negative decimal integer</label>
+              <div class="input-with-action"><input id="decimal-input" class="text-control mono" type="text" inputmode="numeric" value="11" autocomplete="off" aria-describedby="decimal-error"><button class="button button-lavender" id="convert-decimal">Convert</button></div>
+              <p class="field-error" id="decimal-error" role="alert"></p>
+              <div class="decimal-output"><span>BINARY RESULT</span><strong id="decimal-binary-result">1011</strong></div>
+              <div class="calculation-note" id="decimal-steps">11 ÷ 2 remainders, read upward: 1011₂</div>
+              <button class="text-button use-in-complement" id="send-binary-to-complement">Use this binary in complements →</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-complement" data-page-section="complement" hidden>
+          <div class="page-heading"><span class="eyebrow">FLIP THE BITS</span><h1>Complement Calculator</h1><p>Explore one’s and two’s complement using a fixed-width binary number.</p></div>
+          <div class="panel complement-panel">
+            <div class="complement-form">
+              <div><label class="field-label" for="complement-input">Binary number</label><input id="complement-input" class="text-control mono" value="1011" inputmode="numeric" autocomplete="off" aria-describedby="complement-error"></div>
+              <button class="button button-pink" id="calculate-complement">Calculate complements <span>→</span></button>
+            </div>
+            <p class="field-error" id="complement-error" role="alert"></p>
+            <div class="complement-results">
+              <div class="complement-result original-result"><span>ORIGINAL BINARY</span><strong id="complement-original">1011</strong></div>
+              <div class="complement-result"><span>1’S COMPLEMENT <small>Flip each bit</small></span><strong id="ones-complement">0100</strong></div>
+              <div class="complement-result"><span>2’S COMPLEMENT <small>1’s complement + 1</small></span><strong id="twos-complement">0101</strong></div>
+            </div>
+            <div class="tip-card"><span>✦</span><p>Complements keep the original bit width. Two’s complement is found by inverting every bit, then adding 1.</p></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-adder" data-page-section="adder" hidden>
+          <div class="page-heading"><span class="eyebrow">ADD BITS, SEE THE CARRIES</span><h1>Adder Simulator</h1><p>Compare basic adders and follow how a carry moves through the circuit.</p></div>
+          <div class="panel adder-panel">
+            <div class="mode-tabs" role="tablist" aria-label="Adder type">
+              <button class="mode-tab active" role="tab" aria-selected="true" data-adder-mode="half">Half Adder</button>
+              <button class="mode-tab" role="tab" aria-selected="false" data-adder-mode="full">Full Adder</button>
+              <button class="mode-tab" role="tab" aria-selected="false" data-adder-mode="ripple">4-bit Ripple Carry</button>
+              <button class="mode-tab" role="tab" aria-selected="false" data-adder-mode="cla">4-bit Carry Look-Ahead</button>
+            </div>
+            <div class="adder-mode-content" id="adder-half" data-adder-panel="half">
+              <div class="adder-controls"><div class="bit-input-card"><label for="half-a">Input A</label><button class="bit-toggle" id="half-a" data-bit-toggle="half-a" aria-pressed="0">0</button></div><span class="operator">+</span><div class="bit-input-card"><label for="half-b">Input B</label><button class="bit-toggle" id="half-b" data-bit-toggle="half-b" aria-pressed="0">0</button></div><button class="button button-pink" id="calculate-half">Calculate</button></div>
+              <div class="adder-results two-results"><div class="adder-result"><span>SUM</span><strong id="half-sum">0</strong></div><div class="adder-result carry-result"><span>CARRY</span><strong id="half-carry">0</strong></div></div>
+              <div class="equation-strip"><span>Sum = A XOR B</span><span>Carry = A AND B</span></div>
+            </div>
+            <div class="adder-mode-content" id="adder-full" data-adder-panel="full" hidden>
+              <div class="adder-controls"><div class="bit-input-card"><label for="full-a">Input A</label><button class="bit-toggle" id="full-a" data-bit-toggle="full-a" aria-pressed="0">0</button></div><span class="operator">+</span><div class="bit-input-card"><label for="full-b">Input B</label><button class="bit-toggle" id="full-b" data-bit-toggle="full-b" aria-pressed="0">0</button></div><span class="operator carry-in-operator">Cin</span><div class="bit-input-card"><label for="full-cin">Carry in</label><button class="bit-toggle" id="full-cin" data-bit-toggle="full-cin" aria-pressed="0">0</button></div><button class="button button-pink" id="calculate-full">Calculate</button></div>
+              <div class="adder-results two-results"><div class="adder-result"><span>SUM</span><strong id="full-sum">0</strong></div><div class="adder-result carry-result"><span>CARRY OUT</span><strong id="full-carry">0</strong></div></div>
+              <div class="equation-strip"><span>Sum = A XOR B XOR Cin</span><span>Carry-out = AB + (A XOR B)Cin</span></div>
+            </div>
+            <div class="adder-mode-content" id="adder-ripple" data-adder-panel="ripple" hidden>
+              <div class="four-bit-inputs"><label><span class="field-label">Input A</span><input id="ripple-a" class="text-control mono" value="1011" maxlength="4" inputmode="numeric" autocomplete="off" aria-describedby="ripple-error"></label><label><span class="field-label">Input B</span><input id="ripple-b" class="text-control mono" value="0110" maxlength="4" inputmode="numeric" autocomplete="off" aria-describedby="ripple-error"></label><button class="button button-pink" id="calculate-ripple">Add binary numbers</button></div>
+              <p class="field-error" id="ripple-error" role="alert"></p>
+              <div class="ripple-diagram" id="ripple-diagram" aria-label="Four full adders connected in a ripple carry chain"></div>
+              <div class="ripple-answer"><div><span>4-BIT SUM</span><strong id="ripple-sum">0001</strong></div><div><span>FINAL CARRY-OUT</span><strong id="ripple-carry">1</strong></div><div><span>DECIMAL TOTAL</span><strong id="ripple-decimal">17</strong></div></div>
+              <p class="ripple-explanation" id="ripple-explanation">Carries ripple from FA0 through FA1, FA2, and FA3.</p>
+            </div>
+            <div class="adder-mode-content" id="adder-cla" data-adder-panel="cla" hidden>
+              <div class="four-bit-inputs"><label><span class="field-label">Input A</span><input id="cla-a" class="text-control mono" value="1011" maxlength="4" inputmode="numeric" autocomplete="off" aria-describedby="cla-error"></label><label><span class="field-label">Input B</span><input id="cla-b" class="text-control mono" value="0110" maxlength="4" inputmode="numeric" autocomplete="off" aria-describedby="cla-error"></label><label class="cin-select"><span class="field-label">Carry in C₀</span><select id="cla-cin" class="select-control"><option value="0" selected>0</option><option value="1">1</option></select></label><button class="button button-pink" id="calculate-cla">Calculate CLA</button></div>
+              <p class="field-error" id="cla-error" role="alert"></p>
+              <div class="cla-summary"><div class="cla-answer"><span>5-BIT RESULT · C₄S₃S₂S₁S₀</span><strong id="cla-binary">10001</strong><span>Decimal: <b id="cla-decimal">17</b></span></div><div class="cla-signals"><p>Generate <strong id="cla-g">1010</strong></p><p>Propagate <strong id="cla-p">1101</strong></p><p>Carries C₁–C₄ <strong id="cla-c">1 1 0 1</strong></p></div></div>
+              <div class="equation-strip cla-equations"><span>C₁ = G₀ + P₀C₀</span><span>C₂ = G₁ + P₁G₀ + P₁P₀C₀</span><span>C₃ = G₂ + P₂G₁ + P₂P₁G₀ + P₂P₁P₀C₀</span><span>C₄ = G₃ + P₃G₂ + P₃P₂G₁ + P₃P₂P₁G₀ + P₃P₂P₁P₀C₀</span></div>
+              <p class="ripple-explanation">Unlike ripple carry, the look-ahead equations evaluate the carries directly from generate and propagate signals.</p>
+            </div>
+          </div>
+          <div class="tip-card"><span>✦</span><p id="adder-tip"><strong>Half adder:</strong> adds two single bits. It has no carry-in input.</p></div>
+        </section>
+
+        <section class="page" id="page-programs" data-page-section="programs" hidden>
+          <div class="page-heading"><span class="eyebrow">ASSEMBLY LANGUAGE REFERENCE</span><h1>8086 Programs</h1><p>Small, commented examples to help you get started with 8086 arithmetic.</p></div>
+          <div class="program-grid">
+            <article class="panel program-card"><span class="program-number">01 · 8-BIT</span><h2>Addition of two 8-bit numbers</h2><p>Adds two values and stores the sum and carry.</p><pre><code>MOV AL, 25H
+MOV BL, 17H
+ADD AL, BL
+MOV [2000H], AL
+MOV BYTE PTR [2001H], 00H
+JNC DONE
+MOV BYTE PTR [2001H], 01H
+DONE: HLT</code></pre><div class="expected-output"><span>EXPECTED</span><b>AL = 3CH · carry = 0</b></div></article>
+            <article class="panel program-card"><span class="program-number">02 · 8-BIT</span><h2>Subtraction of two 8-bit numbers</h2><p>Subtracts the second value from the first; borrow appears in CF.</p><pre><code>MOV AL, 35H
+MOV BL, 12H
+SUB AL, BL
+MOV [2000H], AL
+MOV BYTE PTR [2001H], 00H
+JNC DONE
+MOV BYTE PTR [2001H], 01H
+DONE: HLT</code></pre><div class="expected-output"><span>EXPECTED</span><b>AL = 23H · borrow = 0</b></div></article>
+            <article class="panel program-card"><span class="program-number">03 · 16-BIT</span><h2>Addition of two 16-bit numbers</h2><p>Adds two words; the carry flag reports overflow beyond 16 bits.</p><pre><code>MOV AX, 1234H
+MOV BX, 0102H
+ADD AX, BX
+MOV [2000H], AX
+HLT</code></pre><div class="expected-output"><span>EXPECTED</span><b>AX = 1336H · carry = 0</b></div></article>
+            <article class="panel program-card"><span class="program-number">04 · 8-BIT</span><h2>Multiplication of two 8-bit numbers</h2><p>Unsigned MUL multiplies AL by the source and stores the product in AX.</p><pre><code>MOV AL, 12H
+MOV BL, 04H
+MUL BL
+MOV [2000H], AX
+HLT</code></pre><div class="expected-output"><span>EXPECTED</span><b>AX = 0048H</b></div></article>
+            <article class="panel program-card"><span class="program-number">05 · 8-BIT</span><h2>Division of two 8-bit numbers</h2><p>DIV divides AX by the source; quotient is in AL, remainder in AH.</p><pre><code>MOV AX, 0048H
+MOV BL, 06H
+DIV BL
+MOV [2000H], AL
+MOV [2001H], AH
+HLT</code></pre><div class="expected-output"><span>EXPECTED</span><b>AL = 0CH · AH = 00H</b></div></article>
+          </div>
+          <p class="program-note">Examples use hexadecimal immediate values and simple memory locations for illustration. Assemble in the syntax and environment used by your course.</p>
+        </section>
+
+        <section class="page" id="page-about" data-page-section="about" hidden>
+          <div class="page-heading"><span class="eyebrow">A FRIENDLY PLACE TO LEARN</span><h1>About the lab</h1><p>Small experiments make big ideas easier to understand.</p></div>
+          <div class="about-hero panel"><span class="about-flower">✿</span><p>This project is an interactive learning dashboard for Computer Organization and Architecture. It helps students understand logic gates, truth tables, number systems, complements, and binary addition through visual simulations.</p></div>
+          <div class="two-column about-grid"><div class="panel about-card"><span class="eyebrow">WHAT YOU CAN DO</span><h2>Features</h2><ul class="feature-list"><li>Interactive logic-gate simulation</li><li>Automatic truth tables that follow your inputs</li><li>Binary conversion and complement tools</li><li>Half, full, ripple-carry, and CLA adder simulations</li><li>8086 arithmetic program examples</li></ul></div><div class="panel about-card"><span class="eyebrow">BUILT FOR LEARNING</span><h2>Technologies</h2><div class="tech-pills"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><p class="muted-copy">Everything runs right in your browser. No account, server, or extra libraries required.</p></div></div>
+        </section>
+      </main>
+      <footer class="workspace-footer"><span>COA LAB SIMULATOR</span><span>Keep curious, keep learning <b>♡</b></span></footer>
+    </div>
+  </div>
+  <div class="sidebar-scrim" id="sidebar-scrim"></div>
+</body>
+</html>
